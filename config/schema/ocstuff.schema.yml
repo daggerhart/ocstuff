@@ -1,0 +1,7 @@
+field.formatter.settings.ocstuff_contribution_embed:
+  type: mapping
+  label: ContributionEmbed formatter settings
+  mapping:
+    foo:
+      type: string
+      label: Foo

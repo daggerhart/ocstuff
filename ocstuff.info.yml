@@ -1,0 +1,5 @@
+name: OC Stuff
+description: Examples
+package: Funding
+type: module
+core_version_requirement: ^9.2 || ^10
