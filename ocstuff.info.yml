@@ -3,3 +3,5 @@ description: Examples
 package: Funding
 type: module
 core_version_requirement: ^9.2 || ^10
+dependencies:
+  - oc_graphql_client:oc_graphql_client

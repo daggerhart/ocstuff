@@ -5,6 +5,7 @@ field.formatter.settings.ocstuff_embed_contribution_flow:
     tier:
       type: string
       label: Tier
+
 field.formatter.settings.ocstuff_embed_button:
   type: mapping
   label: Embed Button formatter settings
@@ -15,6 +16,7 @@ field.formatter.settings.ocstuff_embed_button:
     verb:
       type: string
       label: Verb
+
 field.formatter.settings.ocstuff_embed_banner:
   type: mapping
   label: Embed Banner formatter settings
@@ -22,3 +24,8 @@ field.formatter.settings.ocstuff_embed_banner:
     banner_type:
       type: string
       label: Banner Type
+
+field.formatter.settings.ocstuff_api_events:
+  type: mapping
+  label: Api Events formatter settings
+  mapping: {}

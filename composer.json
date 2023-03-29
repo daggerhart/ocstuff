@@ -1,0 +1,14 @@
+{
+    "name": "drupal/ocstuff",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Jonathan Daggerhart",
+            "email": "jonathan@daggerhart.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/oc_graphql_client": "*"
+    }
+}
