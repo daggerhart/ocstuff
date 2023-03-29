@@ -64,16 +64,23 @@ class EmbedBanner extends FormatterBase {
 
     foreach ($items as $delta => $item) {
       // Default to supporters.
-      $embed = "<script src='//opencollective.com/{$item->value}/banner.js'></script>";
+      $embed = [
+        '#type' => 'html_tag',
+        '#tag' => 'script',
+        '#attributes' => [
+          'src' => "//opencollective.com/{$item->value}/banner.js",
+          'class' => [
+            'ocstuff-embed-script',
+          ],
+        ],
+      ];
 
       // Or events.
       if ($this->getSetting('banner_type') === 'events') {
-        $embed = "<script src='//opencollective.com/{$item->value}/events.js'></script>";
+        $embed['#attributes']['src'] = "//opencollective.com/{$item->value}/events.js";
       }
 
-      $element[$delta] = [
-        '#markup' => Markup::create($embed),
-      ];
+      $element[$delta] = $embed;
     }
 
     return $element;

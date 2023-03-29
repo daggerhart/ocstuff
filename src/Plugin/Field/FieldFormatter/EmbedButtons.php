@@ -75,9 +75,16 @@ class EmbedButtons extends FormatterBase {
     $element = [];
 
     foreach ($items as $delta => $item) {
-      $embed = "<script src='https://opencollective.com/{$item->value}/{$this->getSetting('verb')}/button.js' color='{$this->getSetting('color')}'></script>";
       $element[$delta] = [
-        '#markup' => Markup::create($embed),
+        '#type' => 'html_tag',
+        '#tag' => 'script',
+        '#attributes' => [
+          'src' => "https://opencollective.com/{$item->value}/{$this->getSetting('verb')}/button.js",
+          'color' => $this->getSetting('color'),
+          'class' => [
+            'ocstuff-embed-script',
+          ],
+        ],
       ];
     }
 
