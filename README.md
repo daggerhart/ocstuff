@@ -2,7 +2,12 @@
 
 This is just a practice/example repo. It is not supported at this time.
 
-## Screenshots of Field Formatters
+## Screenshots of "Embed" Field Formatters
+
+These are field formatters that use the OpenCollective Embeds, not their API.
+
+* [Buttons & Banners](https://docs.opencollective.com/help/collectives/widgets)
+* [Contribution Flows](https://docs.opencollective.com/help/collectives/contribution-flow)
 
 These screenshots show all field formatters on one node.
 
