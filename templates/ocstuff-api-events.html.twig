@@ -10,9 +10,13 @@
  */
 #}
 <div class="ocstuff-api-events-wrapper">
-  {{ collective_slug }}
-
-  here
-
-  {{ dump(events) }}
+  {% if events is not empty %}
+    {% for event in events %}
+      <ul style="border-bottom: 1px solid #bbb;">
+        {% for key, value in event %}
+          <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% endif %}
 </div>

@@ -28,4 +28,7 @@ field.formatter.settings.ocstuff_embed_banner:
 field.formatter.settings.ocstuff_api_events:
   type: mapping
   label: Api Events formatter settings
-  mapping: {}
+  mapping:
+    event_properties:
+      type: string
+      label: Event Properties

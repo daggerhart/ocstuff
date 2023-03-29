@@ -5,6 +5,7 @@ namespace Drupal\ocstuff\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\oc_graphql_client\Plugin\OcQuery\CollectiveEvents;
 use Drupal\oc_graphql_client\Service\GraphQLClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -21,12 +22,23 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class ApiEvents extends FormatterBase {
 
-
   /**
+   * GraphQl Client.
+   *
    * @var GraphQLClient
    */
   private GraphQLClient $client;
 
+  /***
+   * @param string $plugin_id
+   *   The plugin_id for the formatter.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param array $configuration
+   *   The plugin configuration.
+   * @param GraphQLClient $client
+   *   GraphQl Client.
+   */
   public function __construct($plugin_id, $plugin_definition, array $configuration, GraphQLClient $client) {
     parent::__construct(
       $plugin_id,
@@ -58,7 +70,7 @@ class ApiEvents extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      //'foo' => 'bar',
+      'event_properties' => 'id slug name',
     ] + parent::defaultSettings();
   }
 
@@ -66,11 +78,11 @@ class ApiEvents extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return [];
-    $elements['foo'] = [
+    $elements['event_properties'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Foo'),
-      '#default_value' => $this->getSetting('foo'),
+      '#title' => $this->t('Event Properties'),
+      '#description' => $this->t('List the properties desired, separated by spaces.'),
+      '#default_value' => $this->getSetting('event_properties'),
     ];
 
     return $elements;
@@ -80,8 +92,7 @@ class ApiEvents extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    return [];
-    $summary[] = $this->t('Foo: @foo', ['@foo' => $this->getSetting('foo')]);
+    $summary[] = $this->t('Event Properties: @event_properties', ['@event_properties' => $this->getSetting('event_properties')]);
     return $summary;
   }
 
@@ -92,11 +103,16 @@ class ApiEvents extends FormatterBase {
     $element = [];
 
     foreach ($items as $delta => $item) {
+      $query = $this->client->queryPluginManager()->createInstance(CollectiveEvents::PLUGIN_ID);
+
       // $item->value
       $element[$delta] = [
         '#theme' => 'ocstuff_api_events',
         '#collective_slug' => $item->value,
-        '#events' => $this->client->getCollectiveEvents($item->value),
+        '#events' => $this->client->performQuery($query, [
+          'collective_slug' => $item->value,
+          'event_properties' => $this->getSetting('event_properties'),
+        ]),
       ];
     }
 
