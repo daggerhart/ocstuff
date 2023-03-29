@@ -52,7 +52,7 @@ class EmbedBanner extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary[] = $this->t('Banner_type: @banner_type', ['@banner_type' => $this->getSetting('banner_type')]);
+    $summary[] = $this->t('Banner Type: @banner_type', ['@banner_type' => $this->getSetting('banner_type')]);
     return $summary;
   }
 

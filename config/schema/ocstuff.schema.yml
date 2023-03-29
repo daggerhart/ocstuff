@@ -1,7 +1,24 @@
-field.formatter.settings.ocstuff_contribution_embed:
+field.formatter.settings.ocstuff_embed_contribution_flow:
   type: mapping
-  label: ContributionEmbed formatter settings
+  label: Embed Contribution Flow formatter settings
   mapping:
-    foo:
+    tier:
       type: string
-      label: Foo
+      label: Tier
+field.formatter.settings.ocstuff_embed_button:
+  type: mapping
+  label: Embed Button formatter settings
+  mapping:
+    color:
+      type: string
+      label: Color
+    verb:
+      type: string
+      label: Verb
+field.formatter.settings.ocstuff_embed_banner:
+  type: mapping
+  label: Embed Banner formatter settings
+  mapping:
+    banner_type:
+      type: string
+      label: Banner Type
