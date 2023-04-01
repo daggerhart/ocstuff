@@ -59,29 +59,11 @@ class EmbedContributionFlow extends FormatterBase {
     $element = [];
 
     foreach ($items as $delta => $item) {
-      // Default to donate.
-      $embed = [
-        '#type' => 'html_tag',
-        '#tag' => 'iframe',
-        '#attributes' => [
-          'src' => "https://opencollective.com/embed/{$item->value}/donate",
-          'class' => [
-            'opencollective-embed-iframe',
-          ],
-        ],
-        '#attached' => [
-          'library' => [
-            'opencollective/embed-iframe',
-          ],
-        ],
+      $element[$delta] = [
+        '#theme' => 'opencollective_embed_contribution_flow',
+        '#collective_slug' => $item->value,
+        '#tier' => trim($this->getSetting('tier')) ?: NULL,
       ];
-
-      // Tier specific flow.
-      if ($this->getSetting('tier')) {
-        $embed['#attributes']['src'] = "https://opencollective.com/embed/{$item->value}/contribute/{$this->getSetting('tier')}";
-      }
-
-      $element[$delta] = $embed;
     }
 
     return $element;

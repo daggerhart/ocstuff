@@ -18,7 +18,7 @@ use Drupal\Core\Render\Markup;
  *   }
  * )
  */
-class EmbedButtons extends FormatterBase {
+class EmbedButton extends FormatterBase {
 
   /**
    * {@inheritdoc}
@@ -76,15 +76,10 @@ class EmbedButtons extends FormatterBase {
 
     foreach ($items as $delta => $item) {
       $element[$delta] = [
-        '#type' => 'html_tag',
-        '#tag' => 'script',
-        '#attributes' => [
-          'src' => "https://opencollective.com/{$item->value}/{$this->getSetting('verb')}/button.js",
-          'color' => $this->getSetting('color'),
-          'class' => [
-            'opencollective-embed-script',
-          ],
-        ],
+        '#theme' => 'opencollective_embed_button',
+        '#collective_slug' => $item->value,
+        '#color' => $this->getSetting('color'),
+        '#verb' => $this->getSetting('verb'),
       ];
     }
 

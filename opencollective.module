@@ -22,36 +22,52 @@ function opencollective_theme() {
         'contributors' => [],
       ],
     ],
+    'opencollective_embed_banner' => [
+      'variables' => [
+        'collective_slug' => NULL,
+      ],
+    ],
+    'opencollective_embed_button' => [
+      'variables' => [
+        'collective_slug' => NULL,
+        'color' => 'blue',
+        'verb' => 'donate'
+      ],
+    ],
+    'opencollective_embed_contribution_flow' => [
+      'variables' => [
+        'collective_slug' => NULL,
+        'tier' => NULL,
+      ],
+    ],
   ];
 }
 
-/**
- * Prepares variables for opencollective-api-events template.
- *
- * Default template: opencollective-api-events.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - foo: Foo variable description.
- */
-function template_preprocess_opencollective_api_events(array &$variables) {
-  /** @var \Drupal\oc_graphql_client\Service\GraphQLClient $client */
-  $client = \Drupal::service('oc_graphql_client.graphql_client');
-  //$client->getCollectiveEvents();
-  //dsm($variables, 'here');
-  $variables['foo'] = 'bar';
+function template_preprocess_opencollective_embed_banner(&$variables) {
+  $variables['attributes']['src'] = "https://opencollective.com/{$variables['collective_slug']}/banner.js";
+}
+
+function template_preprocess_opencollective_embed_button(&$variables) {
+  // Enforce limited options.
+  $colors = ['blue','white'];
+  if (!in_array($variables['color'], $colors)) {
+    $variables['color'] = $colors[0];
+  }
+
+  $verbs = ['donate', 'contribute'];
+  if (!in_array($variables['verb'], $verbs)) {
+    $variables['verb'] = $verbs[0];
+  }
+
+  $variables['attributes']['src'] = "https://opencollective.com/{$variables['collective_slug']}/{$variables['verb']}/button.js";
+  $variables['attributes']['color'] = $variables['color'];
 }
 
 
-/**
- * Prepares variables for opencollective-api-contributors template.
- *
- * Default template: opencollective-api-contributors.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - foo: Foo variable description.
- */
-function template_preprocess_opencollective_api_contributors(array &$variables) {
-  $variables['foo'] = 'bar';
+function template_preprocess_opencollective_embed_contribution_flow(&$variables) {
+  // Handle the url difference between default and specific tiers.
+  $variables['attributes']['src'] = "https://opencollective.com/embed/{$variables['collective_slug']}/donate";
+  if ($variables['tier']) {
+    $variables['attributes']['src'] = "https://opencollective.com/embed/{$variables['collective_slug']}/contribute/{$variables['tier']}";
+  }
 }
