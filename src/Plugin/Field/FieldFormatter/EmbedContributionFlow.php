@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ocstuff\Plugin\Field\FieldFormatter;
+namespace Drupal\opencollective\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -11,7 +11,7 @@ use Drupal\Core\Render\Markup;
  * Plugin implementation of the 'EmbedContributionFlow' formatter.
  *
  * @FieldFormatter(
- *   id = "ocstuff_embed_contribution_flow",
+ *   id = "opencollective_embed_contribution_flow",
  *   label = @Translation("Embed OpenCollective Contribution Flow"),
  *   field_types = {
  *     "string"
@@ -66,12 +66,12 @@ class EmbedContributionFlow extends FormatterBase {
         '#attributes' => [
           'src' => "https://opencollective.com/embed/{$item->value}/donate",
           'class' => [
-            'ocstuff-embed-iframe',
+            'opencollective-embed-iframe',
           ],
         ],
         '#attached' => [
           'library' => [
-            'ocstuff/embed-iframe',
+            'opencollective/embed-iframe',
           ],
         ],
       ];

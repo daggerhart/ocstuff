@@ -1,4 +1,4 @@
-field.formatter.settings.ocstuff_embed_contribution_flow:
+field.formatter.settings.opencollective_embed_contribution_flow:
   type: mapping
   label: Embed Contribution Flow formatter settings
   mapping:
@@ -6,7 +6,7 @@ field.formatter.settings.ocstuff_embed_contribution_flow:
       type: string
       label: Tier
 
-field.formatter.settings.ocstuff_embed_button:
+field.formatter.settings.opencollective_embed_button:
   type: mapping
   label: Embed Button formatter settings
   mapping:
@@ -17,7 +17,7 @@ field.formatter.settings.ocstuff_embed_button:
       type: string
       label: Verb
 
-field.formatter.settings.ocstuff_embed_banner:
+field.formatter.settings.opencollective_embed_banner:
   type: mapping
   label: Embed Banner formatter settings
   mapping:
@@ -25,7 +25,7 @@ field.formatter.settings.ocstuff_embed_banner:
       type: string
       label: Banner Type
 
-field.formatter.settings.ocstuff_api_events:
+field.formatter.settings.opencollective_api_events:
   type: mapping
   label: Api Events formatter settings
   mapping:

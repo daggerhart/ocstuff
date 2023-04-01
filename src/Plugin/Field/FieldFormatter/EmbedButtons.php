@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ocstuff\Plugin\Field\FieldFormatter;
+namespace Drupal\opencollective\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -11,7 +11,7 @@ use Drupal\Core\Render\Markup;
  * Plugin implementation of the 'EmbedButtons' formatter.
  *
  * @FieldFormatter(
- *   id = "ocstuff_embed_button",
+ *   id = "opencollective_embed_button",
  *   label = @Translation("Embed OpenCollective Button"),
  *   field_types = {
  *     "string"
@@ -82,7 +82,7 @@ class EmbedButtons extends FormatterBase {
           'src' => "https://opencollective.com/{$item->value}/{$this->getSetting('verb')}/button.js",
           'color' => $this->getSetting('color'),
           'class' => [
-            'ocstuff-embed-script',
+            'opencollective-embed-script',
           ],
         ],
       ];

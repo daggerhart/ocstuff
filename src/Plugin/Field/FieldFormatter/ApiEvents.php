@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ocstuff\Plugin\Field\FieldFormatter;
+namespace Drupal\opencollective\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Plugin implementation of the 'Api Events' formatter.
  *
  * @FieldFormatter(
- *   id = "ocstuff_api_events",
+ *   id = "opencollective_api_events",
  *   label = @Translation("Api Events"),
  *   field_types = {
  *     "string"
@@ -107,7 +107,7 @@ class ApiEvents extends FormatterBase {
 
       // $item->value
       $element[$delta] = [
-        '#theme' => 'ocstuff_api_events',
+        '#theme' => 'opencollective_api_events',
         '#collective_slug' => $item->value,
         '#events' => $this->client->performQuery($query, [
           'collective_slug' => $item->value,

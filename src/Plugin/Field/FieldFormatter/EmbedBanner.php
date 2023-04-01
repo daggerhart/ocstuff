@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ocstuff\Plugin\Field\FieldFormatter;
+namespace Drupal\opencollective\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -11,7 +11,7 @@ use Drupal\Core\Render\Markup;
  * Plugin implementation of the 'EmbedBanner' formatter.
  *
  * @FieldFormatter(
- *   id = "ocstuff_embed_banner",
+ *   id = "opencollective_embed_banner",
  *   label = @Translation("Embed OpenCollective Banner"),
  *   field_types = {
  *     "string"
@@ -70,7 +70,7 @@ class EmbedBanner extends FormatterBase {
         '#attributes' => [
           'src' => "//opencollective.com/{$item->value}/banner.js",
           'class' => [
-            'ocstuff-embed-script',
+            'opencollective-embed-script',
           ],
         ],
       ];

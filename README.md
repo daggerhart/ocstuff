@@ -1,4 +1,4 @@
-# Drupal Open Collective Stuff
+# Drupal Open Collective
 
 This is just a practice/example repo. It is not supported at this time.
 

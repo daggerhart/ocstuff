@@ -2,21 +2,21 @@
 
 /**
  * @file
- * Primary module hooks for Ocstuff module.
+ * Primary module hooks for Opencollective module.
  */
 
 /**
  * Implements hook_theme().
  */
-function ocstuff_theme() {
+function opencollective_theme() {
   return [
-    'ocstuff_api_events' => [
+    'opencollective_api_events' => [
       'variables' => [
         'collective_slug' => NULL,
         'events' => [],
       ],
     ],
-    'ocstuff_api_contributors' => [
+    'opencollective_api_contributors' => [
       'variables' => [
         'collective_slug' => NULL,
         'contributors' => [],
@@ -26,15 +26,15 @@ function ocstuff_theme() {
 }
 
 /**
- * Prepares variables for ocstuff-api-events template.
+ * Prepares variables for opencollective-api-events template.
  *
- * Default template: ocstuff-api-events.html.twig.
+ * Default template: opencollective-api-events.html.twig.
  *
  * @param array $variables
  *   An associative array containing:
  *   - foo: Foo variable description.
  */
-function template_preprocess_ocstuff_api_events(array &$variables) {
+function template_preprocess_opencollective_api_events(array &$variables) {
   /** @var \Drupal\oc_graphql_client\Service\GraphQLClient $client */
   $client = \Drupal::service('oc_graphql_client.graphql_client');
   //$client->getCollectiveEvents();
@@ -44,14 +44,14 @@ function template_preprocess_ocstuff_api_events(array &$variables) {
 
 
 /**
- * Prepares variables for ocstuff-api-contributors template.
+ * Prepares variables for opencollective-api-contributors template.
  *
- * Default template: ocstuff-api-contributors.html.twig.
+ * Default template: opencollective-api-contributors.html.twig.
  *
  * @param array $variables
  *   An associative array containing:
  *   - foo: Foo variable description.
  */
-function template_preprocess_ocstuff_api_contributors(array &$variables) {
+function template_preprocess_opencollective_api_contributors(array &$variables) {
   $variables['foo'] = 'bar';
 }
